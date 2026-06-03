@@ -2,6 +2,8 @@ package com.example.paciente.Controller;
 
 import com.example.paciente.Model.Paciente;
 import com.example.paciente.Service.PacienteService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,11 +14,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/pacientes")
+@Tag(name = "Paciente Controller", description = "Endpoints para gestionar pacientes")
 public class PacienteController {
 
     @Autowired
     private PacienteService pacienteService;
 
+    @Operation(summary = "Obtener todos los pacientes", description = "Devuelve una lista de todos los pacientes registrados")
     @GetMapping("")
     public ResponseEntity<List<Paciente>> findAll() {
         List<Paciente> pacientes = pacienteService.getAllPacientes();
